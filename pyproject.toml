@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rxnchirality"
+version = "0.1.0"
+description = "Mapping-aware stereocenter handedness (retention/inversion) for atom-mapped reactions, with reaction-adapted CIP labels."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["rdkit>=2023.9.1"]
+keywords = ["chemistry", "stereochemistry", "CIP", "reactions", "atom mapping", "RDKit"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff"]
+
+[project.scripts]
+rxnchirality = "rxnchirality.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint.isort]
+known-local-folder = ["helpers"]

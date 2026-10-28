@@ -1,0 +1,24 @@
+# name	map_num	status	reactant_cip	product_cip	product_rcip	rxn_smiles
+# One row per expected center ("-" = None). A reaction with no expected centers uses map_num "-".
+# Statuses were derived by hand from the written SMILES; CIP labels agree with RDKit's
+# rdCIPLabeler on map-free molecules (checked in test_compare.py).
+sn2	3	inverted	S	R	R	[CH3:1][CH2:2][C@H:3]([CH3:4])[Br:5].[OH-:6]>>[CH3:1][CH2:2][C@@H:3]([CH3:4])[OH:6].[Br-:5]
+sn2_label_unchanged	2	inverted	R	R	S	[CH3:1][C@H:2]([CH2:3][OH:4])[Br:5].[C-:6]#[N:7]>>[CH3:1][C@@H:2]([CH2:3][OH:4])[C:6]#[N:7].[Br-:5]
+hydrogenation_label_flips	3	retained	R	S	R	[CH2:1]=[CH:2][C@H:3]([CH3:4])[CH2:5][CH2:6][CH3:7].[H][H]>>[CH3:1][CH2:2][C@H:3]([CH3:4])[CH2:5][CH2:6][CH3:7]
+esterification	2	retained	S	S	S	[CH3:1][C@H:2]([OH:3])[CH2:4][CH3:5].[CH3:6][C:7](=[O:8])Cl>>[CH3:1][C@H:2]([O:3][C:7]([CH3:6])=[O:8])[CH2:4][CH3:5]
+mitsunobu	2	inverted	S	R	R	[CH3:1][C@H:2]([OH:3])[CH2:4][CH3:5].[OH:6][C:7](=[O:8])[c:9]1[cH:10][cH:11][cH:12][cH:13][cH:14]1>>[CH3:1][C@@H:2]([O:6][C:7](=[O:8])[c:9]1[cH:10][cH:11][cH:12][cH:13][cH:14]1)[CH2:4][CH3:5]
+ketone_reduction	2	created	-	S	-	[CH3:1][C:2](=[O:3])[CH2:4][CH3:5]>>[CH3:1][C@H:2]([OH:3])[CH2:4][CH3:5]
+sulfoxidation	2	created	-	S	-	[CH3:1][S:2][c:3]1[cH:4][cH:5][c:6]([CH3:7])[cH:8][cH:9]1.[OH:10]O>>[CH3:1][S@:2](=[O:10])[c:3]1[cH:4][cH:5][c:6]([CH3:7])[cH:8][cH:9]1
+sulfone_formation	2	destroyed	S	-	-	[CH3:1][S@:2](=[O:10])[c:3]1[cH:4][cH:5][c:6]([CH3:7])[cH:8][cH:9]1.[OH:11]O>>[CH3:1][S:2](=[O:10])(=[O:11])[c:3]1[cH:4][cH:5][c:6]([CH3:7])[cH:8][cH:9]1
+phosphine_oxidation_retention	2	retained	R	S	R	[CH3:1][P@:2]([CH2:3][CH3:4])[c:5]1[cH:6][cH:7][cH:8][cH:9][cH:10]1.[OH:15]O>>[CH3:1][P@:2](=[O:15])([CH2:3][CH3:4])[c:5]1[cH:6][cH:7][cH:8][cH:9][cH:10]1
+epimerization	2	inverted	S	R	R	[CH3:1][C@H:2]([F:3])[C:4](=[O:5])[CH3:6]>>[CH3:1][C@@H:2]([F:3])[C:4](=[O:5])[CH3:6]
+two_ligands_exchanged	2	ambiguous	S	R	-	[CH3:1][C@H:2]([Br:3])[Cl:4].[OH-:5].[SH-:6]>>[CH3:1][C@H:2]([OH:5])[SH:6].[Br-:3].[Cl-:4]
+desymmetrization	2	created	-	R	-	[CH3:1][C@H:2]([CH2:3][OH:4])[CH2:5][OH:6].[CH3:7][C:8](=[O:9])Cl>>[CH3:1][C@H:2]([CH2:3][OH:4])[CH2:5][O:6][C:8]([CH3:7])=[O:9]
+sni_retention	3	retained	S	S	S	[CH3:1][CH2:2][C@H:3]([CH3:4])[OH:5].O=S(Cl)[Cl:6]>>[CH3:1][CH2:2][C@H:3]([CH3:4])[Cl:6]
+two_centers	2	retained	S	S	S	[CH3:1][C@H:2]([OH:3])[C@@H:4]([CH3:5])[Br:6].[N-:7]=[N+:8]=[N-:9]>>[CH3:1][C@H:2]([OH:3])[C@H:4]([CH3:5])[N:7]=[N+:8]=[N-:9].[Br-:6]
+two_centers	4	inverted	R	S	S	[CH3:1][C@H:2]([OH:3])[C@@H:4]([CH3:5])[Br:6].[N-:7]=[N+:8]=[N-:9]>>[CH3:1][C@H:2]([OH:3])[C@H:4]([CH3:5])[N:7]=[N+:8]=[N-:9].[Br-:6]
+epoxide_closure	2	retained	R	R	R	[CH3:1][C@@H:2]([OH:3])[C@H:4]([CH3:5])[Cl:6]>>[CH3:1][C@H:2]1[O:3][C@@H:4]1[CH3:5].[Cl-:6]
+epoxide_closure	4	inverted	S	R	R	[CH3:1][C@@H:2]([OH:3])[C@H:4]([CH3:5])[Cl:6]>>[CH3:1][C@H:2]1[O:3][C@@H:4]1[CH3:5].[Cl-:6]
+deuterium_sn2	2	inverted	R	S	S	[CH3:1][C@@H:2]([2H])[Br:3].[OH-:4]>>[CH3:1][C@H:2]([2H])[OH:4].[Br-:3]
+unspecified_product	2	unspecified	S	-	-	[CH3:1][C@H:2]([OH:3])[CH2:4][CH3:5].[CH3:6][C:7](=[O:8])Cl>>[CH3:1][CH:2]([O:3][C:7]([CH3:6])=[O:8])[CH2:4][CH3:5]
+pseudo_center_guarded	-	-	-	-	-	[CH3:1][C@H:2]([CH3:3])[Br:4].[OH-:5]>>[CH3:1][C@@H:2]([CH3:3])[OH:5].[Br-:4]
